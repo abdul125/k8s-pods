@@ -1,0 +1,21 @@
+# https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: office-service
+spec:
+  selector:
+    matchLabels:
+      app: office-service
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: office-service
+    spec:
+      containers:
+      - name: office-service
+        image: abdul125/office-service
+        ports:
+        - containerPort: 80 
+

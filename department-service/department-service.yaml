@@ -1,0 +1,21 @@
+# https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: department-service
+spec:
+  selector:
+    matchLabels:
+      app: department-service
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: department-service
+    spec:
+      containers:
+      - name: department-service
+        image: abdul125/department-service
+        ports:
+        - containerPort: 80 
+
