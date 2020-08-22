@@ -1,0 +1,20 @@
+# https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: main-site
+spec:
+  selector:
+    matchLabels:
+      app: main-site
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: main-site
+    spec:
+      containers:
+      - name: main-site
+        image: abdul125/main-site
+        ports:
+        - containerPort: 80 
