@@ -1,0 +1,20 @@
+# https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
+apiVersion: apps/v1 # 
+kind: Deployment
+metadata:
+  name: role
+spec:
+  selector:
+    matchLabels:
+      app: role
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: role
+    spec:
+      containers:
+      - name: role-service
+        image: abdul125/role-service
+        ports:
+        - containerPort: 80 

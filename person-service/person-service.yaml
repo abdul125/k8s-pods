@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: main-site
+  name: person
   labels:
-    app: main-site
+    app: person
 spec:
   ports:
   - protocol: TCP # this might not be important 
     port: 80
   selector:
-    app: main-site
+    app: person

@@ -1,0 +1,20 @@
+# https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: person
+spec:
+  selector:
+    matchLabels:
+      app: person
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: person
+    spec:
+      containers:
+      - name: person-service
+        image: abdul125/person-service
+        ports:
+        - containerPort: 80 
