@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: department-service
   labels:
-    app: department-api
+    app: department
 spec:
-  type: NodePort
   ports:
   - protocol: TCP
     port: 80
   selector:
-    app: department-api
+    app: department
