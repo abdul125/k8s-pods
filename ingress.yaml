@@ -9,7 +9,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: # the default one
+      - path:
         backend:
           serviceName: main-site
           servicePort: 80
