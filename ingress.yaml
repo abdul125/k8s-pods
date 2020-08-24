@@ -1,30 +1,31 @@
+# refrenece: https://kubernetes.io/docs/concepts/services-networking/ingress/
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress
   annotations:
-    ingress.kubernetes.io/ssl-redirect: "false"
+    ingress.kubernetes.io/ssl-redirect: "false" # i thought because of https
 spec:
   rules:
   - http:
       paths:
-      - path: 
+      - path: # the default one
         backend:
           serviceName: main-site
           servicePort: 80
-      - path: /office/
+      - path: /office
         backend:
           serviceName: office
           servicePort: 80
-      - path: /department/
+      - path: /department
         backend:
           serviceName: department
           servicePort: 80
-      - path: /person/
+      - path: /person
         backend:
           serviceName: person
           servicePort: 80
-      - path: /role/
+      - path: /role
         backend:
           serviceName: role
           servicePort: 80
