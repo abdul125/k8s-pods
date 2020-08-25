@@ -1,14 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: office
+  name: ingress
+  namespace: abdul
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
   - http:
       paths:
-      - path: 
+      - path: /
         backend:
           serviceName: main-site
           servicePort: 80
