@@ -6,7 +6,7 @@ metadata:
     app: person
 spec:
   ports:
-  - protocol: TCP # this might not be important 
+  - protocol: TCP
     port: 80
   selector:
     app: person

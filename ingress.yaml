@@ -1,15 +1,14 @@
-# refrenece: https://kubernetes.io/docs/concepts/services-networking/ingress/
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress
+  name: office
   annotations:
-    ingress.kubernetes.io/ssl-redirect: "false" # i thought because of https
+    ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
   - http:
       paths:
-      - path:
+      - path: 
         backend:
           serviceName: main-site
           servicePort: 80
@@ -20,6 +19,14 @@ spec:
       - path: /department
         backend:
           serviceName: department
+          servicePort: 80
+      - path: /person
+        backend:
+          serviceName: person
+          servicePort: 80
+      - path: /role
+        backend:
+          serviceName: role
           servicePort: 80
       
 
