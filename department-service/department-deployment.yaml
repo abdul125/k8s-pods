@@ -1,8 +1,9 @@
 # https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
 apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
 kind: Deployment
-metadata:
+metadata: test
   name: department
+  namespace: 
 spec:
   selector:
     matchLabels:
@@ -15,7 +16,7 @@ spec:
     spec:
       containers:
       - name: department-service
-        image: abdul125/department-service:latest
+        image: abdul125/department-service
         ports:
         - containerPort: 80 
 
