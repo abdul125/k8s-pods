@@ -1,6 +1,6 @@
-# https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/
 apiVersion: apps/v1
 kind: Deployment
+namespace: test
 metadata:
   name: role
 spec:
@@ -17,4 +17,4 @@ spec:
       - name: role-service
         image: abdul125/role-service
         ports:
-        - containerPort: 80 
+        - containerPort: 80
