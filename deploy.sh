@@ -15,6 +15,6 @@ kubectl apply -f department-service/deploy.yaml -n test
 kubectl apply -f department-service/service.yaml -n test
 
 #delpoyin ingress con
-kubectl apply -f ingress.yaml
+kubectl apply -f ingress.yaml -n test
 
 kubectl get all --all-namespaces
