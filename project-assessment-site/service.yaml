@@ -7,7 +7,7 @@ metadata:
     app: main-site
 spec:
   ports:
-  - protocol: TCP 
+  - protocol: TCP
     port: 80
   selector:
     app: main-site
