@@ -1,7 +1,8 @@
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: person
+  namespace: test
 spec:
   selector:
     matchLabels:
@@ -16,4 +17,4 @@ spec:
       - name: person-service
         image: abdul125/person-service
         ports:
-        - containerPort: 80 
+        - containerPort: 80
