@@ -35,7 +35,7 @@ spec:
     CREDS = credentials('abdul_docker_creds')
     DOCKER_NAMESPACE = 'abdul125'
     SERVICE_NAME = 'office-service'
-    TOKEN=credentials('TOKEN')
+    TOKEN=credentials('f31d7edb-5ac0-43a8-b324-0c5e2475c6ae')
   }
   stages {
       stage("Build") {
