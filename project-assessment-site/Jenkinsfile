@@ -35,7 +35,7 @@ spec:
     CREDS = credentials('abdul_docker_creds')
     DOCKER_NAMESPACE = 'abdul125'
     SERVICE_NAME = 'project-assessment-site'
-    TOKEN=credentials('f44672d3-c6bc-4957-8856-abfe8ce77ed8')
+    TOKEN=credentials('f31d7edb-5ac0-43a8-b324-0c5e2475c6ae')
   }
   stages {
       stage("Build") {
