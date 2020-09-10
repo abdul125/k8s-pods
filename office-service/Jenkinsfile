@@ -10,7 +10,7 @@ metadata:
     service_type: REST
 spec:
   containers:
-  - name: ond
+  - name: dnd
     image: docker:latest
     command: 
     - cat
@@ -40,7 +40,7 @@ spec:
   stages {
       stage("Build") {
           steps {
-              container('ond') {
+              container('dnd') {
                   sh '''
                       cd $SERVICE_NAME
                       docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
@@ -50,7 +50,7 @@ spec:
       }
       stage("Release") {
           steps {
-              container('ond') {
+              container('dnd') {
                   sh '''
                       docker login -p $CREDS_PSW -u $CREDS_USR
                       docker push $DOCKER_NAMESPACE/$SERVICE_NAME

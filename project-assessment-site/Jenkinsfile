@@ -6,16 +6,16 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    service_name: main-site
-    service_type: INDEX
+    service_name: project-assessment-site
+    service_type: REST
 spec:
   containers:
-  - name: psnd
+  - name: dnd
     image: docker:latest
     command: 
     - cat
     tty: true
-    volumeMounts:
+    volumeMounts: 
     - mountPath: /var/run/docker.sock
       name: docker-sock
   - name: kubectl
@@ -34,13 +34,13 @@ spec:
   environment {
     CREDS = credentials('abdul_docker_creds')
     DOCKER_NAMESPACE = 'abdul125'
-    SERVICE_NAME = 'main-site'
-    TOKEN=credentials('TOKEN')
+    SERVICE_NAME = 'project-assessment-site'
+    TOKEN=credentials('')
   }
   stages {
       stage("Build") {
           steps {
-              container('psnd') {
+              container('dnd') {
                   sh '''
                       cd $SERVICE_NAME
                       docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
@@ -50,8 +50,8 @@ spec:
       }
       stage("Release") {
           steps {
-              container('psnd') {
-                  sh '''
+              container('dnd') {
+		      sh '''
                       docker login -p $CREDS_PSW -u $CREDS_USR
                       docker push $DOCKER_NAMESPACE/$SERVICE_NAME
                   '''
@@ -63,10 +63,12 @@ spec:
               container('kubectl') {
                   sh '''
                       cd $SERVICE_NAME
-                      kubectl --token=$TOKEN -n test apply -f deploy.yaml -f service.yaml
+                      kubectl --token=$TOKEN -n test apply -f deploy.yaml -f service.yaml -f ingress.yaml
+                      kubectl --token=$TOKEN -n test get all
                   '''
               }
           }
       }
   }
 }
+

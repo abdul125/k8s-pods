@@ -29,5 +29,3 @@ spec:
         backend:
           serviceName: role
           servicePort: 80
-      
-
