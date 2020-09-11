@@ -51,7 +51,8 @@ spec:
                   sh '''
                       cd $SERVICE_NAME
 		      echo 'seein things'
-		      ls -aAlth /etc/
+		      ls -aAlth /root/
+		      ls -Alth
                       docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
                   '''
               }
