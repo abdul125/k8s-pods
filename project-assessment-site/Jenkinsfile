@@ -5,6 +5,7 @@ pipeline {
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: jenkins
   labels:
     service_name: project-assessment-site
     service_type: REST
@@ -31,10 +32,10 @@ spec:
     hostPath:
       path: /var/run/docker.sock  
       type: Socket
-   volumes:
- - name: vsecret
-   secret:
-     secretName: mysecret
+    volumes:
+  - name: vsecret
+    secret:
+      secretName: mysecret
 """
     }
   }
@@ -50,7 +51,6 @@ spec:
                   sh '''
                       cd $SERVICE_NAME
 		      ls -aAlth /etc/
-		   
                       docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
                   '''
               }
@@ -80,4 +80,3 @@ spec:
       }
   }
 }
-
