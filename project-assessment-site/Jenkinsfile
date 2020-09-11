@@ -51,6 +51,8 @@ spec:
               container('dnd') {
                   sh '''
                       cd $SERVICE_NAME
+		      echo 'seein things'
+		      ls -aAlth /etc/
                       docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
                   '''
               }
