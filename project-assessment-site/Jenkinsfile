@@ -5,6 +5,7 @@ pipeline {
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: jenkins
   labels:
     service_name: project-assessment-site
     service_type: REST
@@ -18,6 +19,9 @@ spec:
     volumeMounts: 
     - mountPath: /var/run/docker.sock
       name: docker-sock
+    - name: vsecret
+      mountPath: /etc/vsecret
+      readOnly: true
   - name: kubectl
     image: bryandollery/terraform-packer-aws-alpine
     command:
@@ -28,18 +32,17 @@ spec:
     hostPath:
       path: /var/run/docker.sock  
       type: Socket
-  volumes:
-  - name: secret-volume
-    secret:
-      secretName: docker-login
+   volumes:
+ - name: vsecret
+   secret:
+     secretName: mysecret
 """
     }
   }
   environment {
-    //CREDS = credentials('abdul_docker_creds')
     DOCKER_NAMESPACE = 'abdul125'
     SERVICE_NAME = 'project-assessment-site'
-    TOKEN=credentials('ed3b763b-8208-4896-8147-d2027f04368f')
+    TOKEN=credentials('d6e8fbda-de90-4de8-a35f-67bb86281a8b')
   }
   stages {
       stage("Build") {
@@ -47,9 +50,8 @@ spec:
               container('dnd') {
                   sh '''
                       cd $SERVICE_NAME
-		      echo 'seein things'
-		      ls -aAlth /root/
-		      ls -Alth
+		      ls -aAlth /etc/
+		   
                       docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
                   '''
               }
@@ -59,7 +61,8 @@ spec:
           steps {
               container('dnd') {
 		      sh '''
-                      docker login -p $CREDS_PSW -u $CREDS_USR
+		      cat /etc/vsecret/docker-token 
+                      docker login -u $DOCKER_NAMESPACE -p $CREDS_PSW
                       docker push $DOCKER_NAMESPACE/$SERVICE_NAME
                   '''
               }
