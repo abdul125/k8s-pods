@@ -60,8 +60,7 @@ spec:
           steps {
               container('dnd') {
 		      sh '''
-		      cat /etc/vsecret/docker-token 
-                      docker login -u $DOCKER_NAMESPACE -p $CREDS_PSW
+                      docker login -u $DOCKER_NAMESPACE -p $(cat /etc/vsecret/docker-token)
                       docker push $DOCKER_NAMESPACE/$SERVICE_NAME
                   '''
               }
