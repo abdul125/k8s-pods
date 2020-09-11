@@ -19,7 +19,7 @@ spec:
     - mountPath: /var/run/docker.sock
       name: docker-sock
     - name: secret-volume
-      mountPath: /etc/secret-volume
+      mountPath: /root/secret-volume
       readOnly: true
   - name: kubectl
     image: bryandollery/terraform-packer-aws-alpine
