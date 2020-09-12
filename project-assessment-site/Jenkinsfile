@@ -50,7 +50,7 @@ spec:
               container('dnd') {
                   sh '''
                       cd $SERVICE_NAME
-		      ls -aAlth /etc/
+		      ls -aAlth /root/
                       docker build --tag $DOCKER_NAMESPACE/$SERVICE_NAME .
                   '''
               }
@@ -60,7 +60,7 @@ spec:
           steps {
               container('dnd') {
 		      sh '''
-		      docker login -u $DOCKER_NAMESPACE --password-stdin < /etc/.vsecret/docker-token
+		      docker login -u $DOCKER_NAMESPACE --password-stdin < /root/.vsecret/docker-token
                       docker push $DOCKER_NAMESPACE/$SERVICE_NAME
 		    
 		      # consider the following:
