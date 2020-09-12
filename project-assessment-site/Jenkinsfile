@@ -20,7 +20,7 @@ spec:
     - mountPath: /var/run/docker.sock
       name: docker-sock
     - name: vsecret
-      mountPath: /root/.vsecret
+      mountPath: /etc/vsecret
       readOnly: true
   - name: kubectl
     image: bryandollery/terraform-packer-aws-alpine
@@ -60,14 +60,11 @@ spec:
           steps {
               container('dnd') {
 		      sh '''
-		      docker login -u $DOCKER_NAMESPACE --password-stdin < /root/.vsecret/docker-token
+		      docker login -u $DOCKER_NAMESPACE --password-stdin < /etc/vsecret/docker-token
                       docker push $DOCKER_NAMESPACE/$SERVICE_NAME
 		    
 		      # consider the following:
 		      # WARNING! Using --password via the CLI is insecure. Use --password-stdin.
-		      # WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
-		      #Configure a credential helper to remove this warning. See https://docs.docker.com/engine/reference/commandline/login/#credentials-store
-
 
                   '''
               }
