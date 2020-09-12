@@ -5,7 +5,7 @@ pipeline {
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: test
+  namespace: jenkins
   labels:
     service_name: project-assessment-site
     service_type: REST
