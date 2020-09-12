@@ -5,7 +5,6 @@ pipeline {
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: jenkins
   labels:
     service_name: project-assessment-site
     service_type: REST
@@ -42,7 +41,7 @@ spec:
   environment {
     DOCKER_NAMESPACE = 'abdul125'
     SERVICE_NAME = 'project-assessment-site'
-    TOKEN=credentials('d6e8fbda-de90-4de8-a35f-67bb86281a8b')
+    TOKEN=credentials('e84e85e2-912c-4e88-891b-7b7eefd8544a')
   }
   stages {
       stage("Build") {
@@ -60,7 +59,7 @@ spec:
           steps {
               container('dnd') {
 		      sh '''
-                      docker login -u $DOCKER_NAMESPACE -p $(cat /etc/vsecret/docker-token)
+		      docker login -u $DOCKER_NAMESPACE --password-stdin < /etc/vsecret/docker-token
                       docker push $DOCKER_NAMESPACE/$SERVICE_NAME
 		    
 		      # consider using --password-stdin
