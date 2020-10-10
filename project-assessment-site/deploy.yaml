@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: main-site
-        image: abdul125/main-site:1
+        image: abdul125/main-site
         ports:
         - containerPort: 80 
